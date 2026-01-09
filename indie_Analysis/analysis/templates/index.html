@@ -12,7 +12,7 @@
     <header class="header">
       <div class="container">
         <div class="logo-container">
-          <a href="index.html" class="logo-button">
+          <a href="{% url 'home' %}" class="logo-button">
             <svg
               class="octopus-logo"
               viewBox="0 0 100 100"
@@ -83,10 +83,10 @@
           </a>
         </div>
         <nav class="nav">
-          <a href="index.html" class="nav-link active">Accueil</a>
-          <a href="contact.html" class="nav-link">Contact</a>
-          <a href="connecter.html" class="nav-link">Connexion</a>
-          <a href="Inscription.html" class="nav-link">Inscription</a>
+          <a href="{% url 'home' %}" class="nav-link active">Accueil</a>
+          <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+          <a href="{% url 'connecter' %}" class="nav-link">Connexion</a>
+          <a href="{%url 'register'%}" class="nav-link">Inscription</a>
         </nav>
       </div>
     </header>
@@ -99,17 +99,17 @@
           Explorez les statistiques et données du monde du gaming
         </p>
         <div class="hero-cards">
-          <a href="q1.html" class="hero-card">
+          <a href="{% url 'q1'%}" class="hero-card">
             <div class="card-icon">📊</div>
             <h3>Genres et étiquettes populaires</h3>
             <p>Découvrez les jeux les plus populaires</p>
           </a>
-          <a href="q2.html" class="hero-card">
+          <a href="{% url 'q2'%}" class="hero-card">
             <div class="card-icon">💰</div>
             <h3>Coût des Jeux</h3>
             <p>Analysez les prix du marché</p>
           </a>
-          <a href="q3.html" class="hero-card">
+          <a href="{%url 'q3'%}" class="hero-card">
             <div class="card-icon">👥</div>
             <h3>Engagement par langue</h3>
             <p>Analyse de l'engagement</p>
