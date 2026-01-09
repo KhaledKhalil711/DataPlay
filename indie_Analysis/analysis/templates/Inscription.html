@@ -26,56 +26,59 @@
             Une erreur s'est produite
           </div>
 
-          <form class="auth-form" id="registerForm">
-            <div class="auth-input-group">
-              <label for="name">Nom complet</label>
-              <input
-                type="text"
-                id="name"
-                class="auth-input"
-                placeholder="Votre nom"
-                required
-              />
-            </div>
+          <form class="auth-form" method="POST" action="{% url 'register' %}">
+          {% csrf_token %}
 
-            <div class="auth-input-group">
-              <label for="email">Adresse email</label>
-              <input
-                type="email"
-                id="email"
-                class="auth-input"
-                placeholder="votre@email.com"
-                required
-              />
-            </div>
+    <div class="auth-input-group">
+    <label for="name">Nom complet</label>
+    <input
+      type="text"
+      name="name"
+      id="name"
+      class="auth-input"
+      placeholder="Votre nom"
+      required
+    />
+  </div>
 
-            <div class="auth-input-group">
-              <label for="password">Mot de passe</label>
-              <input
-                type="password"
-                id="password"
-                class="auth-input"
-                placeholder="••••••••"
-                required
-              />
-            </div>
+  <div class="auth-input-group">
+    <label for="username">Nom d'utilisateur</label>
+    <input
+      type="text"
+      name="username"
+      id="username"
+      class="auth-input"
+      placeholder="nom_utilisateur"
+      required
+    />
+  </div>
 
-            <div class="auth-input-group">
-              <label for="confirmPassword">Confirmer le mot de passe</label>
-              <input
-                type="password"
-                id="confirmPassword"
-                class="auth-input"
-                placeholder="••••••••"
-                required
-              />
-            </div>
+  <div class="auth-input-group">
+    <label for="password">Mot de passe</label>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      class="auth-input"
+      placeholder="••••••••"
+      required
+    />
+  </div>
+  <div class="auth-input-group">
+    <label for="password">Confirmer le mot de passe</label>
+    <input
+      type="password"
+      name="confirm_password"
+      id="confirmPassword"
+      class="auth-input"
+      required
+    />
+  </div>
 
-            <button type="submit" class="auth-submit-btn">
-              <span>S'inscrire</span>
-            </button>
-          </form>
-
+  <button type="submit" class="auth-submit-btn">
+    <span>S'inscrire</span>
+  </button>
+</form>
           <div class="auth-footer">
             Vous avez déjà un compte ?
             <a href="connecter.html">Se connecter</a>
@@ -84,21 +87,6 @@
       </div>
     </div>
 
-    <script>
-      document
-        .getElementById('registerForm')
-        .addEventListener('submit', function (e) {
-          e.preventDefault();
-          const btn = this.querySelector('.auth-submit-btn');
-          btn.classList.add('loading');
-
-          // Simulate registration (replace with actual logic)
-          setTimeout(() => {
-            btn.classList.remove('loading');
-            alert('Inscription réussie !');
-            // window.location.href = 'index.html';
-          }, 2000);
-        });
-    </script>
+   
   </body>
 </html>

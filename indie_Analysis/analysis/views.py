@@ -39,23 +39,25 @@ def register(request):
         full_name = request.POST.get("name")
         username = request.POST.get("username")
         password = request.POST.get("password")
-        if User.objects.filter(username = username).exists():
-            messages.error(request)
+        confirm_password = request.POST.get("confirm_password")
+
+        if password != confirm_password:
+            messages.error(request, "Les mots de passe ne correspondent pas")
             return redirect("register")
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Nom d'utilisateur déjà utilisé")
+            return redirect("register")
+
         user = User.objects.create_user(
             username=username,
             password=password
         )
-
-
         user.first_name = full_name
         user.save()
 
-        login(request,user)
+        login(request, user)
         return redirect("home")
 
-
-     
-
-    return render(request, "register.html")
+    return render(request, "inscription.html")
 
