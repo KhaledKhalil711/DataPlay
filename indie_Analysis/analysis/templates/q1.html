@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DataPlay - Jeux Populaires</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="{%static 'styles.css'%}" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+      .chart-card {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .chart-card h3 {
+        text-align: center;
+        margin-bottom: 15px;
+        color: #1e90ff;
+      }
+
+      canvas {
+        max-height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="logo-container">
+          <a href="index.html" class="logo-button">
+            <h1 class="logo-text">DataPlay</h1>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <section class="features">
+      <div class="container">
+        <h2 class="section-title">Analyse de l'Engagement</h2>
+
+        <img src="{% static 'Images/Q1-1.png' %}" style="width: 100%; border-radius: 15px" />
+        <div class="insight-card">
+          <h4>Enseignements clés : Engagement</h4>
+          <ul class="insight-list">
+            <li>
+              <strong>L'Action</strong> est de loin le genre le plus populaire
+              en termes d'engagement, avec une avance massive sur les autres
+              genres.
+            </li>
+            <li>
+              <strong>L'Aventure et le RPG</strong> se classent bien mieux ici
+              que dans le simple décompte des jeux, montrant que les joueurs y
+              passent plus de temps.
+            </li>
+            <li>
+              <strong>La Simulation et la Stratégie</strong> s'en sortent très
+              bien malgré un nombre de titres inférieur aux jeux Casual.
+            </li>
+            <li>
+              Le genre <strong>Casual</strong> génère un engagement par jeu
+              comparativement plus faible.
+            </li>
+            <li>
+              <strong>Le Sport et le Multijoueur de masse</strong> restent des
+              marchés de niche, tant en offre qu'en engagement.
+            </li>
+          </ul>
+          <p class="insight-note">
+            👉 Ce graphique montre ce qui intéresse réellement les joueurs.
+          </p>
+        </div>
+
+        <img src="{% static 'Images/Q1-2.png' %}"  style="width: 100%; border-radius: 15px" />
+        <div class="insight-card">
+          <h4>Enseignements clés : Offre Développeurs</h4>
+          <ul class="insight-list">
+            <li>
+              <strong>L'Action et l'Aventure</strong> dominent l'espace
+              indépendant, indiquant que les développeurs choisissent
+              majoritairement ces genres.
+            </li>
+            <li>
+              Les jeux <strong>Casual</strong> ont une présence très forte,
+              reflétant une complexité de développement moindre.
+            </li>
+            <li>
+              La <strong>Simulation, le RPG et la Stratégie</strong> forment un
+              milieu de gamme solide.
+            </li>
+            <li>
+              <strong>Le Sport et la Course</strong> sont les moins représentés,
+              probablement dû aux coûts de licence et à la complexité technique.
+            </li>
+          </ul>
+          <p class="insight-note">
+            👉 Ce graphique reflète l'offre des développeurs, pas l'intérêt des
+            joueurs.
+          </p>
+        </div>
+
+        <img src="{% static 'Images/Q1-3.png' %}"  style="width: 100%; border-radius: 15px" />
+        <div class="insight-card">
+          <h4>Enseignements clés : Tags les plus populaires</h4>
+          <ul class="insight-list">
+            <li>
+              Les tags comme
+              <strong>Solo (Singleplayer), Action et Indé</strong> dominent,
+              confirmant la force des expériences narratives en solo.
+            </li>
+            <li>
+              La <strong>2D, le Pixel Art et l'Atmosphérique</strong> soulignent
+              les styles de design les plus courants dans le monde indé.
+            </li>
+            <li>Les tags <strong>Exploration, Puzzle et Narration (Story Rich)</strong> suggèrent que les joueurs privilégient la profondeur et l'immersion plutôt que le gameplay compétitif.</li>
+            <li>La popularité des tags <strong>Occasionnel (Casual) et Simulation</strong> confirme leur accessibilité et leur attrait auprès d'un large public.</li>
+    </ul>
+    <p class="insight-note">👉 Les tags aident à expliquer <em>pourquoi</em> certains genres réussissent mieux que d'autres.</p>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    
+  </body>
+</html>

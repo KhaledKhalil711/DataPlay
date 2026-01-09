@@ -1,0 +1,122 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DataPlay - Jeux Populaires</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="{%static 'styles.css'%}" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+      .chart-card {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .chart-card h3 {
+        text-align: center;
+        margin-bottom: 15px;
+        color: #1e90ff;
+      }
+
+      canvas {
+        max-height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="logo-container">
+          <a href="index.html" class="logo-button">
+            <h1 class="logo-text">DataPlay</h1>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <section class="features">
+      <div class="container">
+        <h2 class="section-title">Analyse des Prix</h2>
+
+        <img
+          src="{% static 'Images/Q2-1.png' %}"
+          style="width: 100%; border-radius: 15px"
+        />
+        <div class="insight-card">
+          <h4>Enseignements clés : Jeux Payants</h4>
+          <ul class="insight-list">
+            <li>
+              La plupart des jeux indépendants payants sont proposés à un prix
+              <strong>inférieur à 10 €</strong>.
+            </li>
+            <li>
+              La plus forte concentration de prix se situe dans la tranche
+              allant de <strong>0 € à 4,99 €</strong>.
+            </li>
+            <li>
+              La fréquence des prix <strong>chute brutalement</strong> après le
+              seuil des 20 €.
+            </li>
+            <li>
+              Les jeux indés à prix élevé (30 € et plus) sont
+              <strong>très rares</strong> sur le marché.
+            </li>
+            <li>
+              La distribution des prix présente une
+              <strong>asymétrie positive</strong> (vers la droite), indiquant
+              l'existence de quelques exceptions coûteuses.
+            </li>
+          </ul>
+          <p class="insight-note">
+            👉 L'histogramme montre que le marché indé est ultra-compétitif sur
+            les petits prix.
+          </p>
+        </div>
+
+        <img
+          src="{%static 'Images/Q2-2.png'%}"
+          style="width: 100%; border-radius: 15px"
+        />
+        <div class="insight-card">
+          <h4>Enseignements clés : Tranches de Prix (Gratuit + Payant)</h4>
+          <ul class="insight-list">
+            <li>
+              Une part importante des jeux indépendants est proposée en
+              <strong>Free-to-play</strong> (gratuit).
+            </li>
+            <li>
+              Les <strong>prix abordables</strong> dominent largement l'ensemble
+              du marché indépendant.
+            </li>
+            <li>
+              Les jeux vendus au-delà de 20 € ne représentent qu'une
+              <strong>infime fraction</strong> des sorties totales.
+            </li>
+            <li>
+              Les développeurs privilégient des
+              <strong>points d'entrée à bas prix</strong> pour attirer plus
+              facilement les joueurs.
+            </li>
+            <li>
+              Les jeux indés au prix "Premium" constituent
+              <strong>l'exception et non la règle</strong>.
+            </li>
+          </ul>
+          <p class="insight-note">
+            👉 Ce graphique confirme que l'accessibilité financière est une
+            stratégie clé pour les studios indés.
+          </p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

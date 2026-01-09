@@ -1,0 +1,114 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DataPlay - Jeux Populaires</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="{%static 'styles.css' %}"" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+      .chart-card {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .chart-card h3 {
+        text-align: center;
+        margin-bottom: 15px;
+        color: #1e90ff;
+      }
+
+      canvas {
+        max-height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="logo-container">
+          <a href="index.html" class="logo-button">
+            <h1 class="logo-text">DataPlay</h1>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <section class="features">
+      <div class="container">
+        <h2 class="section-title">Analyse de l'Engagement Mondial</h2>
+
+        <img
+          src="{%static 'Images/Q3-1.png'%}"
+          style="width: 100%; border-radius: 15px"
+        />
+
+        <div class="insight-card">
+          <h4>Enseignements clés : Répartition par Langue</h4>
+          <ul class="insight-list">
+            <li>
+              L'engagement pour les jeux indépendants est
+              <strong>réparti à l'échelle mondiale</strong> mais reste fortement
+              concentré.
+            </li>
+            <li>
+              Les joueurs parlant
+              <strong>chinois (13,7 %) et espagnol (13,4 %)</strong> génèrent
+              l'engagement le plus élevé.
+            </li>
+            <li>
+              Les marchés
+              <strong>anglophones (11,3 %) et lusophones (11,5 %)</strong>
+              contribuent également à une part importante des évaluations.
+            </li>
+            <li>
+              Les <strong>langues européennes</strong> (allemand, français,
+              italien) forment un segment intermédiaire solide en termes
+              d'engagement.
+            </li>
+          </ul>
+          <p class="insight-note">
+            👉 L'engagement est réparti sur plusieurs régions majeures sans être
+            dominé par une seule.
+          </p>
+        </div>
+
+        <div class="insight-card">
+          <h4>Concentration de l'Engagement</h4>
+          <ul class="insight-list">
+            <li>
+              Environ <strong>50 % de l'engagement total</strong> provient de
+              seulement quatre langues (Chinois, Espagnol, Portugais et
+              Anglais).
+            </li>
+            <li>
+              Les marchés linguistiques plus petits contribuent toujours de
+              manière <strong>significative</strong> au total mondial.
+            </li>
+            <li>
+              La <strong>localisation</strong> dans les langues majeures peut
+              augmenter considérablement l'engagement des joueurs.
+            </li>
+            <li>
+              Le support de plusieurs langues est essentiel pour atteindre des
+              <strong>publics internationaux diversifiés</strong>.
+            </li>
+          </ul>
+          <p class="insight-note">
+            👉 Le succès est mondial, mais porté par quelques marchés à fort
+            impact.
+          </p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

@@ -9,26 +9,29 @@ from django.contrib import messages
 
 # Create your views here.
 def home(request):
-    return HttpResponse("Indie Game Analysis Dashboard")
+    return render(request, "index.html")
 
 def login_required_page(request):
     return HttpResponse("Please log in to view the data analysis")
 
 def contact(request):
-    return HttpResponse("Contact Us Page")
+    return render(request,"contact.html")
+
+def login(request):
+    return render(request,"connecter.html")
 
 # Protected Analysis Page
 @login_required(login_url = "/login-required/")
 def q1(request):
-    return HttpResponse("Q1-Genre analysis place holder")
+    return render(request, "q1.html")
 
 @login_required(login_url = "/login-required/")
 def q2(request):
-    return HttpResponse("Q2- Price Analysis (placeholder)")
+    return render(request, "q2.html")
 
 @login_required(login_url="/login-required")
 def q3(request):
-    return HttpResponse("Q3 - Language and Engagement Analysis Placeholder")
+    return render(request, "q3.html")
 
 #Registration 
 def register(request):
