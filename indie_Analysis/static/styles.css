@@ -1244,3 +1244,117 @@ body.auth-page .logo-text a {
     transform: rotate(360deg);
   }
 }
+
+/* ========================================
+   LOGIN POPUP STYLES
+   ======================================== */
+
+.popup-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, rgba(30, 144, 255, 0.2), rgba(0, 212, 255, 0.2));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-blue);
+  animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(30, 144, 255, 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 20px rgba(30, 144, 255, 0);
+  }
+}
+
+.popup-title {
+  font-size: 2rem;
+  color: var(--text-white);
+  margin-bottom: 1rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, var(--text-white), var(--accent-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.popup-message {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.popup-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.popup-btn {
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.popup-btn-primary {
+  background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+  color: var(--text-white);
+  border: none;
+  box-shadow: 0 10px 30px rgba(30, 144, 255, 0.4);
+}
+
+.popup-btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.popup-btn-primary:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.popup-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(30, 144, 255, 0.6);
+}
+
+.popup-btn-secondary {
+  background: rgba(30, 144, 255, 0.1);
+  color: var(--accent-blue);
+  border: 2px solid rgba(30, 144, 255, 0.3);
+}
+
+.popup-btn-secondary:hover {
+  background: rgba(30, 144, 255, 0.2);
+  border-color: var(--primary-blue);
+  transform: translateY(-2px);
+}
+
+.popup-btn span {
+  position: relative;
+  z-index: 1;
+}

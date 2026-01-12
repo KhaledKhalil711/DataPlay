@@ -1,11 +1,11 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Connexion - DataPlay</title>
-    <link rel="stylesheet" href="{%static 'styles.css'%}"" />
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
   </head>
   <body class="auth-page">
     <header class="header">
@@ -22,18 +22,25 @@
 
       <div class="auth-card">
         <div class="auth-card-inner">
-          <div class="auth-message error" id="errorMessage">
-            Email ou mot de passe incorrect
-          </div>
+          {% if messages %}
+            {% for message in messages %}
+              <div class="auth-message error" style="display: block;">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
 
-          <form class="auth-form" id="loginForm">
+          <form class="auth-form" method="POST" action="{% url 'connecter' %}">
+            {% csrf_token %}
+            
             <div class="auth-input-group">
-              <label for="email">Adresse email</label>
+              <label for="username">Nom d'utilisateur</label>
               <input
-                type="email"
-                id="email"
+                type="text"
+                id="username"
+                name="username"
                 class="auth-input"
-                placeholder="votre@email.com"
+                placeholder="nom_utilisateur"
                 required
               />
             </div>
@@ -43,6 +50,7 @@
               <input
                 type="password"
                 id="password"
+                name="password"
                 class="auth-input"
                 placeholder="••••••••"
                 required
@@ -51,7 +59,7 @@
 
             <div class="remember-forgot">
               <label class="remember-me">
-                <input type="checkbox" id="remember" />
+                <input type="checkbox" id="remember" name="remember" />
                 <span>Se souvenir de moi</span>
               </label>
               <a href="#" class="forgot-password">Mot de passe oublié ?</a>
@@ -64,27 +72,10 @@
 
           <div class="auth-footer">
             Vous n'avez pas de compte ?
-            <a href="Inscription.html">S'inscrire</a>
+            <a href="{% url 'register' %}">S'inscrire</a>
           </div>
         </div>
       </div>
     </div>
-
-    <script>
-      document
-        .getElementById('loginForm')
-        .addEventListener('submit', function (e) {
-          e.preventDefault();
-          const btn = this.querySelector('.auth-submit-btn');
-          btn.classList.add('loading');
-
-          // Simulate login (replace with actual logic)
-          setTimeout(() => {
-            btn.classList.remove('loading');
-            alert('Connexion réussie !');
-            // window.location.href = 'index.html';
-          }, 2000);
-        });
-    </script>
   </body>
 </html>
