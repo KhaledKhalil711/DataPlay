@@ -25,6 +25,14 @@
           <div class="auth-message error" id="errorMessage">
             Une erreur s'est produite
           </div>
+          {% if messages %}
+            {% for message in messages %}
+              <div class="auth-message error" style="display: block;">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+          
 
           <form class="auth-form" method="POST" action="{% url 'register' %}">
           {% csrf_token %}
@@ -42,13 +50,13 @@
   </div>
 
   <div class="auth-input-group">
-    <label for="username">Nom d'utilisateur</label>
+    <label for="email">Adresse email</label>
     <input
-      type="text"
-      name="username"
-      id="username"
+      type="email"
+      name="email"
+      id="email"
       class="auth-input"
-      placeholder="nom_utilisateur"
+      placeholder="votre@email.com"
       required
     />
   </div>

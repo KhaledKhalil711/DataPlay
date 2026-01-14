@@ -14,23 +14,26 @@ def home(request):
 def login_required_page(request):
     return render(request, "login_required.html")
 
-def contact(request):
-    return render(request,"contact.html")
 
 def login(request):
     if request.method == "POST":
-        username = request.POST.get("username")
+        email = request.POST.get("email")
         password = request.POST.get("password")
         
-        user = authenticate(request, username=username, password=password)
-        
-        if user is not None:
-            auth_login(request, user)
-            # Redirect to the page they were trying to access, or home
-            next_url = request.GET.get('next', 'home')
-            return redirect(next_url)
-        else:
-            messages.error(request, "Nom d'utilisateur ou mot de passe incorrect")
+          # Find user by email
+        try:
+            user_obj = User.objects.get(email=email)
+            user = authenticate(request, username=user_obj.email, password=password)
+            
+            if user is not None:
+                auth_login(request, user)
+                # Redirect to the page they were trying to access, or home
+                next_url = request.GET.get('next', 'home')
+                return redirect(next_url)
+            else:
+                messages.error(request, "Email ou mot de passe incorrect")
+        except User.DoesNotExist:
+            messages.error(request, "Email ou mot de passe incorrect")
     
     return render(request, "connecter.html")
 
@@ -51,7 +54,7 @@ def q3(request):
 def register(request):
     if request.method == "POST":
         full_name = request.POST.get("name")
-        username = request.POST.get("username")
+        email = request.POST.get("email")
         password = request.POST.get("password")
         confirm_password = request.POST.get("confirm_password")
 
@@ -59,12 +62,13 @@ def register(request):
             messages.error(request, "Les mots de passe ne correspondent pas")
             return redirect("register")
 
-        if User.objects.filter(username=username).exists():
-            messages.error(request, "Nom d'utilisateur déjà utilisé")
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "email a déjà utilisé")
             return redirect("register")
 
         user = User.objects.create_user(
-            username=username,
+            username = email,
+            email=email,
             password=password
         )
         user.first_name = full_name

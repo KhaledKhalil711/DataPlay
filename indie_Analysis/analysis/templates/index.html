@@ -84,7 +84,7 @@
         </div>
        <nav class="nav">
       <a href="{% url 'home' %}" class="nav-link active">Accueil</a>
-      <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+      
   
       {% if user.is_authenticated %}
       <span class="nav-link" style="color: var(--accent-blue);">Bonjour, {{ user.first_name }}!</span>
@@ -153,6 +153,6 @@
       </div>
     </section>
 
-    <script src="script.js"></script>
+  
   </body>
 </html>
