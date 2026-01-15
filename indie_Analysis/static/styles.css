@@ -137,6 +137,46 @@ body {
 .nav {
   display: flex;
   gap: 2rem;
+  align-items: center;
+}
+.nav form {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+.nav form button {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.nav form button:hover {
+  color: var(--accent-blue);
+  background: rgba(30, 144, 255, 0.1);
+}
+.nav form button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--accent-blue);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav form button:hover::after {
+  width: 80%;
 }
 
 .nav-link {

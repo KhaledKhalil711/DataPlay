@@ -21,19 +21,19 @@ def login(request):
         password = request.POST.get("password")
         
           # Find user by email
-        try:
-            user_obj = User.objects.get(email=email)
-            user = authenticate(request, username=user_obj.email, password=password)
+        # try:
+        user_obj = User.objects.get(email=email)
+        user = authenticate(request, username=user_obj.email, password=password)
             
-            if user is not None:
+        if user is not None:
                 auth_login(request, user)
                 # Redirect to the page they were trying to access, or home
                 next_url = request.GET.get('next', 'home')
                 return redirect(next_url)
-            else:
+        else:
                 messages.error(request, "Email ou mot de passe incorrect")
-        except User.DoesNotExist:
-            messages.error(request, "Email ou mot de passe incorrect")
+        # except User.DoesNotExist:
+        #     messages.error(request, "Email ou mot de passe incorrect")
     
     return render(request, "connecter.html")
 
