@@ -1358,3 +1358,35 @@ body.auth-page .logo-text a {
   position: relative;
   z-index: 1;
 }
+.hero-actions {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.contact-button {
+  display: inline-block;
+  padding: 14px 30px;
+  background-color: var(--accent-blue);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.contact-button:hover {
+  background-color: #0f6fdc;
+  transform: translateY(-2px);
+}
+.nav .nav-link {
+  margin-left: 15px;
+}
+
+.nav .nav-link:hover {
+  text-decoration: underline;
+}
+
+.nav .nav-link[href*="contact"] {
+  font-weight: bold;
+}

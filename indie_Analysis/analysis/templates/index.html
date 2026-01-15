@@ -84,11 +84,17 @@
         </div>
        <nav class="nav">
       <a href="{% url 'home' %}" class="nav-link active">Accueil</a>
-      
+        <!-- BOUTON NOUS CONTACTER -->
+      <a href="{% url 'contact' %}" class="nav-link">Nous contacter</a>
   
       {% if user.is_authenticated %}
       <span class="nav-link" style="color: var(--accent-blue);">Bonjour, {{ user.first_name }}!</span>
-      <a href="{% url 'logout' %}" class="nav-link">Déconnexion</a>
+      <form method="post" action="{% url 'logout' %}" style="display: inline;">
+  {% csrf_token %}
+  <button type="submit" class="nav-link" style="background: none; border: none; padding: 0; cursor: pointer;">
+    Déconnexion
+  </button>
+</form>
       {% else %}
       <a href="{% url 'connecter' %}" class="nav-link">Connexion</a>
       <a href="{% url 'register' %}" class="nav-link">Inscription</a>
@@ -97,32 +103,44 @@
       </div>
     </header>
 
-    <!-- Hero Section -->
-  <section class="hero">
+  <!-- Hero Section -->
+<section class="hero">
   <div class="container">
     <h2 class="hero-title">Bienvenue sur DataPlay</h2>
     <p class="hero-subtitle">
       Explorez les statistiques et données du monde du gaming
     </p>
+
     <div class="hero-cards">
       <a href="{% url 'q1' %}" class="hero-card">
         <div class="card-icon">📊</div>
         <h3>Genres et étiquettes populaires</h3>
         <p>Découvrez les jeux les plus populaires</p>
       </a>
+
       <a href="{% url 'q2' %}" class="hero-card">
         <div class="card-icon">💰</div>
         <h3>Coût des Jeux</h3>
         <p>Analysez les prix du marché</p>
       </a>
+
       <a href="{% url 'q3' %}" class="hero-card">
         <div class="card-icon">👥</div>
         <h3>Engagement par langue</h3>
         <p>Analyse de l'engagement</p>
       </a>
     </div>
+
+    <!-- ✅ BOUTON NOUS CONTACTER (À AJOUTER ICI) -->
+    <div class="hero-actions">
+      <a href="{% url 'contact' %}" class="contact-button">
+        📩 Nous contacter
+      </a>
+    </div>
+
   </div>
-  </section>
+</section>
+
 
     <!-- Team Section -->
     <section class="features">
@@ -147,7 +165,7 @@
           <div class="feature-item">
             <div class="feature-icon">👩‍💻</div>
             <h3>HABRACHE Nouara</h3>
-            <p>Membre de l'équipe</p>
+            <p>Testeuse</p>
           </div>
         </div>
       </div>
