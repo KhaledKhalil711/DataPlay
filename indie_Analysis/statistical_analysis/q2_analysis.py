@@ -26,35 +26,90 @@ def prepare_q2_data():
     
     return df_games, paid_mask
 
-def create_histogram():
-    """Create histogram of paid game prices"""
+def create_price_pie_chart():
+    """Create pie chart showing price distribution by range"""
     df_games, paid_mask = prepare_q2_data()
-    paid_prices = df_games.loc[paid_mask, "price_eur"]
+    
+    # Define price ranges for paid games only
+    paid_games = df_games[paid_mask].copy()
+    
+    # Create buckets for pie chart
+    def categorize_price(price):
+        if price < 5:
+            return "€0-4.99"
+        elif price < 10:
+            return "€5-9.99"
+        elif price < 15:
+            return "€10-14.99"
+        elif price < 20:
+            return "€15-19.99"
+        elif price < 30:
+            return "€20-29.99"
+        else:
+            return "€30+"
+    
+    paid_games['price_category'] = paid_games['price_eur'].apply(categorize_price)
+    
+    # Count games in each category
+    category_counts = paid_games['price_category'].value_counts()
+    
+    # Order categories properly
+    category_order = ["€0-4.99", "€5-9.99", "€10-14.99", "€15-19.99", "€20-29.99", "€30+"]
+    category_counts = category_counts.reindex(category_order, fill_value=0)
+    
+    # Custom colors for each slice
+    slice_colors = [
+        COLORS['accent_blue'],    # €0-4.99
+        COLORS['primary_blue'],   # €5-9.99
+        COLORS['light_blue'],     # €10-14.99
+        '#4169e1',                # €15-19.99
+        '#6495ed',                # €20-29.99
+        '#87ceeb'                 # €30+
+    ]
     
     fig = go.Figure()
     
-    fig.add_trace(go.Histogram(
-        x=paid_prices,
-        nbinsx=150,
+    fig.add_trace(go.Pie(
+        labels=category_counts.index,
+        values=category_counts.values,
         marker=dict(
-            color=COLORS['accent_blue'],
-            line=dict(color=COLORS['primary_blue'], width=0.5)
+            colors=slice_colors,
+            line=dict(color=COLORS['bg_dark'], width=2)
         ),
-        hovertemplate='<b>Prix:</b> €%{x:.2f}<br>' +
-                      '<b>Nombre de jeux:</b> %{y}<br>' +
+        textinfo='label+percent',
+        textfont=dict(size=14, color=COLORS['text_white']),
+        hovertemplate='<b>%{label}</b><br>' +
+                      'Jeux: %{value:,}<br>' +
+                      'Pourcentage: %{percent}<br>' +
                       '<extra></extra>',
-        name='Jeux'
+        pull=[0.05, 0, 0, 0, 0, 0]  # Pull out the largest slice slightly
     ))
     
-    layout = get_base_layout('Distribution des Prix des Jeux Indés Payants (EUR)')
-    layout['xaxis'] = get_axis_style('Prix (EUR)')
-    layout['xaxis']['range'] = [0, 60]
-    layout['xaxis']['dtick'] = 5
-    layout['yaxis'] = get_axis_style('Nombre de jeux')
+    fig.update_layout(
+        title={
+            'text': 'Répartition des Jeux Payants par Tranche de Prix',
+            'font': {'size': 20, 'color': COLORS['text_white'], 'family': 'Segoe UI'},
+            'x': 0.5,
+            'xanchor': 'center'
+        },
+        plot_bgcolor=COLORS['dark_blue'],
+        paper_bgcolor=COLORS['bg_dark'],
+        font=dict(family='Segoe UI', color=COLORS['text_light']),
+        height=600,
+        showlegend=True,
+        legend=dict(
+            orientation="v",
+            yanchor="middle",
+            y=0.5,
+            xanchor="left",
+            x=1.02,
+            font=dict(size=12, color=COLORS['text_light']),
+            bgcolor='rgba(0,0,0,0)'
+        ),
+        margin=dict(t=80, b=60, l=60, r=200)
+    )
     
-    fig.update_layout(**layout)
-    
-    return fig.to_html(include_plotlyjs='cdn', div_id='histogram-chart')
+    return fig.to_html(include_plotlyjs='cdn', div_id='pie-chart')
 
 def create_price_buckets():
     """Create bar chart of price range buckets"""

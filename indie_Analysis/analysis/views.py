@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
-from statistical_analysis.q2_analysis import create_histogram,create_price_buckets,get_statistics
+from statistical_analysis.q2_analysis import create_price_pie_chart,create_price_buckets,get_statistics
 
 
 # Create your views here.
@@ -47,7 +47,7 @@ def q1(request):
 def q2(request):
     """Q2 - Price Analysis"""
     context = {
-        'chart1': create_histogram(),
+        'chart1': create_price_pie_chart(),
         'chart2': create_price_buckets(),
         'stats': get_statistics()
     }
