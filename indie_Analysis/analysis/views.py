@@ -6,6 +6,12 @@ from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
 from statistical_analysis.q2_analysis import create_price_pie_chart,create_price_buckets,get_statistics
+from statistical_analysis.q1_analysis import (
+    create_genre_popularity_weighted, 
+    create_genre_count_chart, 
+    create_top_tags_chart, 
+    get_q1_statistics
+)
 
 
 # Create your views here.
@@ -39,9 +45,16 @@ def login(request):
     return render(request, "connecter.html")
 
 # Protected Analysis Page
-@login_required(login_url = "/login-required/")
+@login_required(login_url="/login-required/")
 def q1(request):
-    return render(request, "q1.html")
+    """Q1 - Genres and Tags Analysis"""
+    context = {
+        'chart1': create_genre_popularity_weighted(),
+        'chart2': create_genre_count_chart(),
+        'chart3': create_top_tags_chart(),
+        'stats': get_q1_statistics()
+    }
+    return render(request, 'q1.html', context)
 
 @login_required(login_url="/login-required/")
 def q2(request):
