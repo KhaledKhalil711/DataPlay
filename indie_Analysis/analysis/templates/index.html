@@ -7,7 +7,18 @@
     <title>DataPlay - Accueil</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}" />
   </head>
+
   <body>
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        {{ message }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
     <!-- Header -->
     <header class="header">
       <div class="container">
@@ -88,16 +99,14 @@
       <a href="{% url 'contact' %}" class="nav-link">Nous contacter</a>
   
       {% if user.is_authenticated %}
-      <span class="nav-link" style="color: var(--accent-blue);">Bonjour, {{ user.first_name }}!</span>
-      <form method="post" action="{% url 'logout' %}" style="display: inline;">
-  {% csrf_token %}
-  <button type="submit" class="nav-link" style="background: none; border: none; padding: 0; cursor: pointer;">
-    Déconnexion
-  </button>
-</form>
-      {% else %}
-      <a href="{% url 'connecter' %}" class="nav-link">Connexion</a>
-      <a href="{% url 'register' %}" class="nav-link">Inscription</a>
+        <span class="nav-link" style="color: var(--accent-blue);">Bonjour, {{ user.first_name }}!</span>
+        <form method="post" action="{% url 'logout' %}" style="margin: 0; display: inline;">
+          {% csrf_token %}
+          <button type="submit" class="nav-link">Déconnexion</button>
+      </form>
+  {% else %}
+    <a href="{% url 'connecter' %}" class="nav-link">Connexion</a>
+    <a href="{% url 'register' %}" class="nav-link">Inscription</a>
   {% endif %}
 </nav>
       </div>

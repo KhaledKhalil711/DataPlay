@@ -75,11 +75,12 @@ def register(request):
         user.save()
 
         auth_login(request, user)
+       
         return redirect("home")
 
     return render(request, "inscription.html")
 
-def contact(request):
+'''def contact(request):
     if request.method == "POST":
         email = request.POST.get('email')
         message = request.POST.get('message')
@@ -90,7 +91,26 @@ def contact(request):
         # Optionnel : afficher dans la console pour vérification
         print(f"Email : {email}, Message : {message}")
 
+    return render(request, "contact.html")'''
+    
+
+
+def contact(request):
+    if request.method == "POST":
+        email = request.POST.get('email')
+        message_text = request.POST.get('message')
+
+        # Enregistrer dans la base
+        ContactMessage.objects.create(email=email, message=message_text)
+
+        # Ajouter un message à afficher
+        messages.success(request, "Merci pour votre message !")
+
+        # Rediriger vers la page d'accueil
+        return redirect("home")
+
     return render(request, "contact.html")
+
 
 
 
