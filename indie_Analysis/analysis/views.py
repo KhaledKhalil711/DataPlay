@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
+from statistical_analysis.q2_analysis import create_histogram,create_price_buckets,get_statistics
 
 
 # Create your views here.
@@ -42,9 +43,15 @@ def login(request):
 def q1(request):
     return render(request, "q1.html")
 
-@login_required(login_url = "/login-required/")
+@login_required(login_url="/login-required/")
 def q2(request):
-    return render(request, "q2.html")
+    """Q2 - Price Analysis"""
+    context = {
+        'chart1': create_histogram(),
+        'chart2': create_price_buckets(),
+        'stats': get_statistics()
+    }
+    return render(request, 'q2.html', context)
 
 @login_required(login_url="/login-required")
 def q3(request):
