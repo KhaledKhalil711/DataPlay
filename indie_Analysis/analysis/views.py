@@ -12,6 +12,13 @@ from statistical_analysis.q1_analysis import (
     create_top_tags_chart, 
     get_q1_statistics
 )
+from statistical_analysis.q3_analysis import (
+    create_language_engagement_chart,
+    create_language_pie_chart,
+    create_cumulative_engagement_chart,
+    create_language_game_count_chart,
+    get_q3_statistics
+)
 
 
 # Create your views here.
@@ -66,9 +73,17 @@ def q2(request):
     }
     return render(request, 'q2.html', context)
 
-@login_required(login_url="/login-required")
+@login_required(login_url="/login-required/")
 def q3(request):
-    return render(request, "q3.html")
+    """Q3 - Language Engagement Analysis"""
+    context = {
+        'chart1': create_language_engagement_chart(),
+        'chart2': create_language_pie_chart(),
+        'chart3': create_cumulative_engagement_chart(),
+        'chart4': create_language_game_count_chart(),
+        'stats': get_q3_statistics()
+    }
+    return render(request, 'q3.html', context)
 
 #Registration 
 def register(request):
