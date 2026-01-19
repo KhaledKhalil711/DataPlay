@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
+from .models import ContactMessage
 from statistical_analysis.q2_analysis import create_price_pie_chart,create_price_buckets,get_statistics
 from statistical_analysis.q1_analysis import (
     create_genre_popularity_weighted, 
@@ -110,7 +111,26 @@ def register(request):
         user.save()
 
         auth_login(request, user)
+       
         return redirect("home")
 
     return render(request, "inscription.html")
+
+
+def contact(request):
+    if request.method == "POST":
+        email = request.POST.get('email')
+        message_text = request.POST.get('message')
+
+        # Enregistrer dans la base
+        ContactMessage.objects.create(email=email, message=message_text)
+
+        # Ajouter un message à afficher
+        messages.success(request, "Merci pour votre message !")
+
+        # Rediriger vers la page d'accueil
+        return redirect("home")
+
+    return render(request, "contact.html")
+
 
