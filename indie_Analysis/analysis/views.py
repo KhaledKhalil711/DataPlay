@@ -119,18 +119,21 @@ def register(request):
 
 def contact(request):
     if request.method == "POST":
+        nom = request.POST.get('name')   # le champ HTML s'appelle "name"
         email = request.POST.get('email')
         message_text = request.POST.get('message')
 
-        # Enregistrer dans la base
-        ContactMessage.objects.create(email=email, message=message_text)
+        ContactMessage.objects.create(
+            nom=nom,          # ✅ correspond au modèle
+            email=email,
+            message=message_text
+        )
 
-        # Ajouter un message à afficher
         messages.success(request, "Merci pour votre message !")
-
-        # Rediriger vers la page d'accueil
         return redirect("home")
 
     return render(request, "contact.html")
+
+
 
 
